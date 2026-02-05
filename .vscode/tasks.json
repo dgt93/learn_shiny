@@ -13,9 +13,20 @@
       "problemMatcher": []
     },
     {
-      "label": "build",
+      "label": "build:web",
       "type": "shell",
       "command": "uv run shinylive export src/test_polars_shinylive docs",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build:exe",
+      "type": "shell",
+      "command": "cd src/test_polars_shinylive && uv run pyinstaller app.spec --distpath ../../dist --workpath ../../build --noconfirm",
       "group": "build",
       "presentation": {
         "reveal": "always",

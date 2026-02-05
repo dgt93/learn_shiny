@@ -1,3 +1,5 @@
 .venv
 docs
+dist
+build
 *.pyc

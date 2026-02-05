@@ -1,4 +1,5 @@
 {
+    "python.analysis.extraPaths": ["src/test_polars_shinylive"],
     "mypy-type-checker.importStrategy": "fromEnvironment",
     "ruff.configurationPreference": "filesystemFirst",
     "editor.formatOnSave": true,

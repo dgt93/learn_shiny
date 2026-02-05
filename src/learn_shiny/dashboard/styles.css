@@ -1,0 +1,8 @@
+/* Theme handles background colors */
+
+/* Fix DataGrid header in dark mode */
+[data-bs-theme="dark"] .shiny-data-grid thead th,
+[data-bs-theme="dark"] .shiny-data-grid [role="columnheader"] {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}

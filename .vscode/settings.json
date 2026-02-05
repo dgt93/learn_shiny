@@ -1,4 +1,5 @@
 {
     "mypy-type-checker.importStrategy": "fromEnvironment",
-    "ruff.configurationPreference": "filesystemFirst"
+    "ruff.configurationPreference": "filesystemFirst",
+    "editor.formatOnSave": true
 }

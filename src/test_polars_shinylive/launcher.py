@@ -9,8 +9,11 @@ import os
 import socket
 import sys
 import threading
+import time
 import webbrowser
 from pathlib import Path
+from urllib.request import urlopen
+from urllib.error import URLError
 
 
 def find_free_port() -> int:
@@ -20,7 +23,19 @@ def find_free_port() -> int:
         return s.getsockname()[1]
 
 
-def run_server(app_dir: Path, port: int, blocking: bool = False) -> None:
+def wait_for_server(url: str, timeout: float = 30.0) -> bool:
+    """Wait until the server is responding, or timeout."""
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            urlopen(url, timeout=1)
+            return True
+        except URLError:
+            time.sleep(0.2)
+    return False
+
+
+def run_server(app_dir: Path, port: int) -> None:
     """Run the Shiny server."""
     os.chdir(app_dir)
     sys.path.insert(0, str(app_dir))
@@ -58,6 +73,13 @@ def main() -> None:
     if getattr(sys, "frozen", False):
         # Running as PyInstaller bundle
         app_dir = Path(sys._MEIPASS) / "app"
+
+        # Redirect stdout/stderr to devnull in windowed mode (no console)
+        # This prevents pywebview crashes when there's no console to write to
+        if sys.stdout is None:
+            sys.stdout = open(os.devnull, "w")
+        if sys.stderr is None:
+            sys.stderr = open(os.devnull, "w")
     else:
         # Running as script
         app_dir = Path(__file__).parent
@@ -71,10 +93,10 @@ def main() -> None:
     )
     server_thread.start()
 
-    # Give server a moment to start
-    import time
-
-    time.sleep(1)
+    # Wait for server to be ready
+    if not wait_for_server(url):
+        print("Error: Server failed to start")
+        sys.exit(1)
 
     # Try native window first (works on Windows), fall back to browser
     if not try_webview(url):

@@ -8,10 +8,11 @@ requires-python = ">=3.12"
 dependencies = [
     "faicons>=0.2.2",
     "plotly>=6.5.2",
-    "polars>=1.38.0",
+    "polars==1.18.0",        # The version of polars included in Pyodide 0.27
     "pyarrow>=19.0.0",
     "seaborn>=0.13.2",
     "shiny>=1.5.1",
+    "shinylive>=0.8.5,<0.9", # Pin to 0.8.x - uses Pyodide 0.27 which has Polars
     "shinyswatch>=0.9.0",
     "shinywidgets>=0.7.1",
 ]

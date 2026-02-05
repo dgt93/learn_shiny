@@ -1,6 +1,5 @@
 import plotly.express as px
 import polars as pl
-import seaborn as sns
 from faicons import icon_svg
 from shiny import reactive
 from shiny.express import input, render, ui

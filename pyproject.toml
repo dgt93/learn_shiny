@@ -32,5 +32,7 @@ dev = [
 
 [tool.ruff]
 line-length = 80
-[tool.ruff.lint]
-select = ["I"]
+
+[[tool.mypy.overrides]]
+module = "plotly.*"
+ignore_missing_imports = true

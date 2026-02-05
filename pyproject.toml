@@ -1,0 +1,19 @@
+[project]
+name = "learn-shiny"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "David Taylor", email = "davidgt93@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = ["polars>=1.38.0", "shiny>=1.5.1"]
+
+
+[build-system]
+requires = ["uv_build>=0.9.30,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["mypy>=1.19.1", "pytest>=9.0.2", "pytest-mock>=3.15.1", "ruff>=0.15.0"]
+
+[tool.ruff]
+line-length = 100

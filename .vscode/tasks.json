@@ -26,7 +26,7 @@
     {
       "label": "serve",
       "type": "shell",
-      "command": "python -m http.server --directory docs 8008",
+      "command": "uv run python -m http.server --directory docs 8008",
       "group": "build",
       "presentation": {
         "reveal": "always",
